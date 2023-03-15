@@ -1,7 +1,10 @@
 package day31Lambda;
+import day32lambda.Utils;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 public class Lambda01 {
     /*
@@ -36,6 +39,7 @@ public class Lambda01 {
         System.out.println();
         printCubeOfDistinctOddElements(numbers);
         System.out.println();
+
         List<Integer> numbers2 = new ArrayList<>();
         numbers2.add(1);
         numbers2.add(5);
@@ -70,7 +74,9 @@ public class Lambda01 {
     //1. Way: Use "Structured Programming"
     public static void printElements1(List<Integer> myList) {
 
+
         for (Integer w : myList) {
+
             System.out.print(w + " ");
         }
     }
@@ -79,7 +85,8 @@ public class Lambda01 {
     public static void printElements2(List<Integer> myList) {
 
 
-        myList.stream().forEach(t -> System.out.print(t + " "));//12 9 122 14 9 10 4 12 15
+        myList.stream().
+                forEach(Utils::printInTheSameLineWithSpace);//12 9 122 14 9 10 4 12 15
 
     }
 
@@ -103,7 +110,7 @@ public class Lambda01 {
         mylist.
                 stream().
                 filter(t -> t % 2 == 0).
-                forEach(t -> System.out.print(t + " "));
+                forEach(Utils::printInTheSameLineWithSpace);
 
     }
 
@@ -130,21 +137,32 @@ public class Lambda01 {
                 filter(t -> t % 2 != 0).
                 distinct().
                 map(t -> t * t * t).
-                forEach(t -> System.out.print(t + " "));
+                forEach(Utils::printInTheSameLineWithSpace);
     }
 
     //5)Create a method to calculate the "sum" of the "squares" of "distinct" "even" elements
 
-    public static int findSumOfSquareOfEvenDistinctElements(List<Integer> myList) {//1 5 6 7 2 2 4
+    public static Optional<Integer> findSumOfSquareOfEvenDistinctElements(List<Integer> myList) {//1 5 6 7 2 2 4
 
-        return myList.stream().distinct().filter(t -> t % 2 == 0).map(t -> t * t).reduce(0, (t, u) -> t + u);
+        return Optional.of(myList.
+                stream().
+                distinct().
+                filter(t -> t % 2 == 0).
+                map(t -> t * t).
+                reduce(0, (t, u) -> t + u));
 
     }
 
     //6)Create a method to calculate the "product" of the "square" of "distinct" "even" elements
     public static int findProductOfSquareOfDistinctEvenElements(List<Integer> myList) {
 
-        return myList.stream().distinct().filter(t -> t % 2 == 0).map(t -> t * t).reduce((t, u) -> t * u).get();
+        return myList.
+                stream().
+                distinct().
+                filter(t -> t % 2 == 0).
+                map(t -> t * t).
+                reduce((t, u) -> t * u).
+                get();
 
     }
 
@@ -152,7 +170,10 @@ public class Lambda01 {
     //1. Way:
     public static int findMin(List<Integer> myList) {//12 9 122 14 9 10 4 12 15
 
-        return myList.stream().distinct().reduce(Integer.MAX_VALUE, (t, u) -> t < u ? t : u);
+        return myList.
+                stream().
+                distinct().
+                reduce(Integer.MAX_VALUE, (t, u) -> t < u ? t : u);
 
     }
 
