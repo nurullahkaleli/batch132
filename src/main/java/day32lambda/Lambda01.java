@@ -39,7 +39,8 @@ public class Lambda01 {
         names.stream().
                 distinct().
                 sorted().
-                map(t->t.toUpperCase()).forEach(t-> System.out.print(t + " "));
+                map(t->t.toUpperCase()).
+                forEach(t-> System.out.print(t + " "));
     }
 
     //2)Print the list elements on the console by ordering them according to their lengths, with upper cases, and un-repeatedly
@@ -68,7 +69,7 @@ public class Lambda01 {
         names.
                 stream().
                 sorted(Comparator.comparing(String::length).thenComparing(t->t.charAt(0))).//If a method needs parameter
-                //it cannot be used in "Method Reference"
+                                                                                            //it cannot be used in "Method Reference"
                         forEach(Utils::printInTheSameLineWithSpace);// Jim Tom Alex Alex Mary Michael Alexander
     }
 

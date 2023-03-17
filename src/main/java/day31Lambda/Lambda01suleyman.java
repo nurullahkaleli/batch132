@@ -66,7 +66,8 @@ public class Lambda01suleyman {
 
     //2.Way: Used "Functional Programming"
     public static void printElements2(List<Integer> myList){// 12 9 131 14 9 10 4 12 15
-        myList.stream().forEach(t-> System.out.print(t + " "));
+        myList.stream().
+                forEach(t-> System.out.print(t + " "));
     }
 
     //2)Create a method to print the "even" list elements on the console
@@ -134,18 +135,28 @@ public class Lambda01suleyman {
 
     //1.Way:
     public static int findMax(List<Integer> myList){
-        return myList.stream().distinct().reduce(Integer.MIN_VALUE, (t,u)->t>u ? t : u);
+        return myList.
+                stream().
+                distinct().
+                reduce(Integer.MIN_VALUE, (t,u)->t>u ? t : u);
     }
 
     //2.Way:
     public static int findMax2(List<Integer> myList){
-        return myList.stream().distinct().reduce(myList.get(0), (t,u)->t>u ? t : u);
+        return myList.
+                stream().
+                distinct().
+                reduce(myList.get(0), (t,u)->t>u ? t : u);
     }
 
     //3.Way:
     public static int findMax3(List<Integer> myList){
-        return myList.stream().distinct().sorted().reduce((t,u)->u).get();//reduce() method with a single parameter does not return Integer
-        //To make return type integer use get() method
+        return myList.
+                stream().
+                distinct().
+                sorted().
+                reduce((t,u)->u).get();//reduce() method with a single parameter does not return Integer
+                                        //To make return type integer use get() method
     }
 
     //4.Way:
@@ -162,7 +173,10 @@ public class Lambda01suleyman {
 
     //1.Way:
     public static int findMin(List<Integer> myList){
-        return myList.stream().distinct().reduce(Integer.MAX_VALUE, (t,u)->t<u ? t : u);
+        return myList.
+                stream().
+                distinct().
+                reduce(Integer.MAX_VALUE, (t,u)->t<u ? t : u);
     }
 
     //2.Way:
@@ -172,16 +186,30 @@ public class Lambda01suleyman {
 
     //3.Way:
     public static int findMin3(List<Integer> myList){
-        return myList.stream().distinct().sorted().findFirst().get();
+        return myList.
+                stream().
+                distinct().
+                sorted().
+                findFirst().
+                get();
     }
 
     //9)Create a method to find the minimum value which is greater than 7 and even from the list
     public static int findMinGreaterThanSevenEven(List<Integer> myList){
-        return myList.stream().distinct().filter(t->t>7 && t%2==0).sorted().findFirst().get();
+        return myList.
+                stream().
+                distinct().
+                filter(t->t>7 && t%2==0).
+                sorted().
+                findFirst().get();
     }
 
     //10)Create a method to find any value which is less than 15 and even from the list
     public static int findAnyValueLessThanFifteenEven(List<Integer> myList){
-        return myList.stream().distinct().filter(t->t<15 && t%2==0).findAny().get();
+        return myList.
+                stream().
+                distinct().
+                filter(t->t<15 && t%2==0).
+                findAny().get();
     }
 }
